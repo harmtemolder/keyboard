@@ -47,10 +47,31 @@ function volUp()
   hs.alert.show("🔊 (" .. string.format("%.0f", hs.audiodevice.defaultOutputDevice():volume()) .. ")")
 end
 
+function moveSpace(direction)
+  -- Note that the spaces module is loaded in hyper.lua
+  local currentSpace = spaces.activeSpace()
+  local screenSpaces = spaces.layout()[spaces.mainScreenUUID()]
+  local currentSpaceIndex = hs.fnutils.indexOf(screenSpaces, currentSpace) or 1
+  local targetSpaceIndex = direction == 'west' and currentSpaceIndex - 1 or currentSpaceIndex + 1
+  local targetSpace = screenSpaces[targetSpaceIndex]
+  hs.window.frontmostWindow():spacesMoveTo(targetSpace)
+  spaces.changeToSpace(targetSpace)
+end
+
+function moveSpaceWest()
+  moveSpace('west')
+end
+
+function moveSpaceEast()
+  moveSpace('east')
+end
+
 -- To launch _your_ most commonly-used apps via Hyper Mode, create a copy of
 -- this file, save it as `hyper-apps.lua`, and edit the table below to configure
 -- your preferred shortcuts.
 return {
+  { '[', moveSpaceWest },       -- Moves the active window one space west with ,
+  { ']', moveSpaceEast },       -- Moves the active window one space east with .
   { 'a', 'Atom' },              -- "A" for "Atom"
   { 'c', 'Google Chrome' },     -- "C" for "Chrome"
   { 'f', 'Firefox' },            -- "F" for "Firefox"
