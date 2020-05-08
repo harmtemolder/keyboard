@@ -1,15 +1,23 @@
 -- Default keybindings for launching apps in Hyper Mode
 
+function volMute()
+  hs.audiodevice.defaultOutputDevice():setOutputMuted(true)
+  hs.alert.closeAll()
+  hs.alert.show("🔇")
+end
+
+function volUnmute()
+  hs.audiodevice.defaultOutputDevice():setOutputMuted(false)
+  hs.alert.closeAll()
+  hs.alert.show("🔈 (" .. string.format("%.0f", hs.audiodevice.defaultOutputDevice():volume()) .. ")")
+  hs.sound.getByFile("/System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources/volume.aiff"):play()
+end
+
 function volMuteToggle()
   if hs.audiodevice.defaultOutputDevice():outputMuted() then
-    hs.audiodevice.defaultOutputDevice():setOutputMuted(false)
-    hs.alert.closeAll()
-    hs.alert.show("🔈 (" .. string.format("%.0f", hs.audiodevice.defaultOutputDevice():volume()) .. ")")
-    hs.sound.getByFile("/System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources/volume.aiff"):play()
+    volUnmute()
   else
-    hs.audiodevice.defaultOutputDevice():setOutputMuted(true)
-    hs.alert.closeAll()
-    hs.alert.show("🔇")
+    volMute()
   end
 end
 
@@ -44,18 +52,13 @@ end
 -- your preferred shortcuts.
 return {
   { 'a', 'Atom' },              -- "A" for "Atom"
-  { 'b', 'Board Game Arena' },  -- "B" for "Board Game Arena"
   { 'c', 'Google Chrome' },     -- "C" for "Chrome"
-  { 'd', 'Dominion' },          -- "D" for "Dominion"
-  { 'f', 'Finder' },            -- "F" for "Finder"
+  { 'f', 'Firefox' },            -- "F" for "Firefox"
   { 'g', 'GitHub Desktop' },    -- "G" for "GitHub"
   { 'm', 'Mail' },              -- "M" for "Mail"
-  { 'o', 'OpenEmu' },           -- "O" for "OpenEmu"
   { 'p', 'Color Picker' },      -- "P" for "Picker"
-  { 's', 'Steam' },             -- "S" for "Steam"
+  -- I have set Mac's keyboard shortcut for screenshots to hyper+s
   { 't', 'iTerm' },             -- "T" for "Terminal"
-  { 'v', 'Surfshark' },         -- "V" for "VPN"
-  { 'w', 'Firefox' },           -- "W" for "Web"
   { 'F10', volMuteToggle },     -- Also enable these fn keys with hyper key
   { 'F11', volDown },           -- Also enable these fn keys with hyper key
   { 'F12', volUp },             -- Also enable these fn keys with hyper key
