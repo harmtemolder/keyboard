@@ -70,11 +70,10 @@ end
 -- this file, save it as `hyper-apps.lua`, and edit the table below to configure
 -- your preferred shortcuts.
 return {
-  { '[', moveSpaceWest },       -- Moves the active window one space west with ,
-  { ']', moveSpaceEast },       -- Moves the active window one space east with .
+  -- Numbers 1, 2, 3 and 4 are mapped to the corresponding spaces
   { 'a', 'Atom' },              -- "A" for "Atom"
   { 'c', 'Google Chrome' },     -- "C" for "Chrome"
-  { 'f', 'Firefox' },            -- "F" for "Firefox"
+  { 'f', 'Firefox' },           -- "F" for "Firefox"
   { 'g', 'GitHub Desktop' },    -- "G" for "GitHub"
   { 'm', 'Mail' },              -- "M" for "Mail"
   { 'p', 'Color Picker' },      -- "P" for "Picker"
@@ -83,4 +82,6 @@ return {
   { 'F10', volMuteToggle },     -- Also enable these fn keys with hyper key
   { 'F11', volDown },           -- Also enable these fn keys with hyper key
   { 'F12', volUp },             -- Also enable these fn keys with hyper key
+  { '[', moveSpaceWest },       -- Moves the active window one space west with ,
+  { ']', moveSpaceEast },       -- Moves the active window one space east with .
 }
