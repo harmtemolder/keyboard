@@ -38,7 +38,7 @@ function volUp()
   if hs.audiodevice.defaultOutputDevice():outputMuted() then
     hs.audiodevice.defaultOutputDevice():setVolume(10)
     hs.audiodevice.defaultOutputDevice():setOutputMuted(false)
-    hs.sound.getByName("Tink"):play()
+    hs.sound.getByFile("/System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources/volume.aiff"):play()
   else
     hs.audiodevice.defaultOutputDevice():setVolume(math.min(hs.audiodevice.defaultOutputDevice():volume() + 10, 100))
     hs.sound.getByFile("/System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources/volume.aiff"):play()
