@@ -1,5 +1,10 @@
 -- Default keybindings for launching apps in Hyper Mode
 
+function toggleDockAndMenu()
+  hs.osascript.applescriptFromFile('keyboard/toggle-menu.applescript')
+  hs.applescript('tell application "System Events" to set autohide of dock preferences to not autohide of dock preferences')
+end
+
 function volMute()
   hs.audiodevice.defaultOutputDevice():setOutputMuted(true)
   hs.alert.closeAll()
@@ -73,6 +78,7 @@ return {
   -- Numbers 1, 2, 3 and 4 are mapped to the corresponding spaces
   { 'a', 'Atom' },              -- "A" for "Atom"
   { 'c', 'Google Chrome' },     -- "C" for "Chrome"
+  { 'd', toggleDockAndMenu },   -- "D" for "Dock"
   { 'f', 'Firefox' },           -- "F" for "Firefox"
   { 'g', 'GitHub Desktop' },    -- "G" for "GitHub"
   { 'm', 'Mail' },              -- "M" for "Mail"
