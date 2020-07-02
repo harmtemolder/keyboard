@@ -81,7 +81,7 @@ return {
   { 'd', toggleDockAndMenu },   -- "D" for "Dock"
   { 'f', 'Firefox' },           -- "F" for "Firefox"
   { 'g', 'GitHub Desktop' },    -- "G" for "GitHub"
-  { 'm', 'Mail' },              -- "M" for "Mail"
+  -- I have set Markdown mode to hyper+m
   { 'p', 'Color Picker' },      -- "P" for "Picker"
   -- I have set Mac's keyboard shortcut for screenshots to hyper+s
   { 't', 'iTerm' },             -- "T" for "Terminal"

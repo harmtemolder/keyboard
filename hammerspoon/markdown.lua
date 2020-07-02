@@ -52,9 +52,9 @@ end
 -- Define Markdown Mode
 --
 -- Markdown Mode allows you to perform common Markdown-formatting tasks anywhere
--- that you're editing text. Use Control+m to turn on Markdown mode. Then, use
+-- that you're editing text. Use hyper+m to turn on Markdown mode. Then, use
 -- any shortcut below to perform a formatting action. For example, to format the
--- selected text as bold in Markdown, hit Control+m, and then b.
+-- selected text as bold in Markdown, hit hyper+m, and then b.
 --
 --   b => wrap the selected text in double asterisks ("b" for "bold")
 --   c => wrap the selected text in backticks ("c" for "code")
@@ -67,7 +67,7 @@ end
 markdownMode = hs.hotkey.modal.new({}, 'F20')
 
 local message = require('keyboard.status-message')
-markdownMode.statusMessage = message.new('Markdown Mode (control-m)')
+markdownMode.statusMessage = message.new('Markdown Mode (hyper+m)')
 markdownMode.entered = function()
   markdownMode.statusMessage:show()
 end
@@ -103,10 +103,10 @@ markdownMode:bindWithAutomaticExit('c', function()
   wrapSelectedText('`')
 end)
 
--- Use Control+m to toggle Markdown Mode
-hs.hotkey.bind({'ctrl'}, 'm', function()
+-- Use hyper+m to toggle Markdown Mode
+hs.hotkey.bind({'shift', 'ctrl', 'alt', 'cmd'}, 'm', function()
   markdownMode:enter()
 end)
-markdownMode:bind({'ctrl'}, 'm', function()
+markdownMode:bind({'shift', 'ctrl', 'alt', 'cmd'}, 'm', function()
   markdownMode:exit()
 end)
