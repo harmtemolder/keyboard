@@ -1,4 +1,4 @@
-hs.window.animationDuration = 0
+hs.window.animationDuration = 0.5 -- in seconds, set to 0 for no animation
 windowPadding = 6 -- in pixels, set to 0 for no padding
 
 function hs.window.fullScreen(win)
@@ -18,10 +18,10 @@ function hs.window.maximizeWithPadding(win)
   local screen = win:screen()
   local max = screen:frame()
 
+  f.w = max.w - 2 * windowPadding
+  f.h = max.h - 2 * windowPadding
   f.x = max.x + windowPadding
   f.y = max.y + windowPadding
-  f.w = max.w - (2 * windowPadding)
-  f.h = max.h - (2 * windowPadding)
   win:setFrame(f)
 end
 
@@ -35,10 +35,10 @@ function hs.window.left(win)
   local screen = win:screen()
   local max = screen:frame()
 
+  f.w = (max.w - 3 * windowPadding) / 2
+  f.h = max.h - 2 * windowPadding
   f.x = max.x + windowPadding
   f.y = max.y + windowPadding
-  f.w = (max.w / 2) - (2 * windowPadding)
-  f.h = max.h - (2 * windowPadding)
   win:setFrame(f)
 end
 
@@ -52,10 +52,10 @@ function hs.window.right(win)
   local screen = win:screen()
   local max = screen:frame()
 
-  f.x = max.x + (max.w / 2) + windowPadding
+  f.w = (max.w - 3 * windowPadding) / 2
+  f.h = max.h - 2 * windowPadding
+  f.x = max.x + f.w + 2 * windowPadding
   f.y = max.y + windowPadding
-  f.w = (max.w / 2) - (2 * windowPadding)
-  f.h = max.h - (2 * windowPadding)
   win:setFrame(f)
 end
 
@@ -69,10 +69,10 @@ function hs.window.up(win)
   local screen = win:screen()
   local max = screen:frame()
 
+  f.w = max.w - 2 * windowPadding
+  f.h = (max.h - 3 * windowPadding) / 2
   f.x = max.x + windowPadding
-  f.w = max.w - (2 * windowPadding)
   f.y = max.y + windowPadding
-  f.h = (max.h / 2) - (2 * windowPadding)
   win:setFrame(f)
 end
 
@@ -86,10 +86,10 @@ function hs.window.down(win)
   local screen = win:screen()
   local max = screen:frame()
 
+  f.w = max.w - 2 * windowPadding
+  f.h = (max.h - 3 * windowPadding) / 2
   f.x = max.x + windowPadding
-  f.w = max.w - (2 * windowPadding)
-  f.y = max.y + (max.h / 2) + windowPadding
-  f.h = (max.h / 2) - (2 * windowPadding)
+  f.y = max.y + f.h + 2 * windowPadding
   win:setFrame(f)
 end
 
@@ -101,12 +101,12 @@ end
 function hs.window.upLeft(win)
   local f = win:frame()
   local screen = win:screen()
-  local max = screen:fullFrame()
+  local max = screen:frame()
 
+  f.w = (max.w - 3 * windowPadding) / 2
+  f.h = (max.h - 3 * windowPadding) / 2
   f.x = max.x + windowPadding
   f.y = max.y + windowPadding
-  f.w = (max.w / 2) - (2 * windowPadding)
-  f.h = (max.h / 2) - (2 * windowPadding)
   win:setFrame(f)
 end
 
@@ -118,12 +118,12 @@ end
 function hs.window.downLeft(win)
   local f = win:frame()
   local screen = win:screen()
-  local max = screen:fullFrame()
+  local max = screen:frame()
 
+  f.w = (max.w - 3 * windowPadding) / 2
+  f.h = (max.h - 3 * windowPadding) / 2
   f.x = max.x + windowPadding
-  f.y = max.y + (max.h / 2) + windowPadding
-  f.w = (max.w / 2) - (2 * windowPadding)
-  f.h = (max.h / 2) - (2 * windowPadding)
+  f.y = max.y + f.h + 2 * windowPadding
   win:setFrame(f)
 end
 
@@ -135,12 +135,12 @@ end
 function hs.window.downRight(win)
   local f = win:frame()
   local screen = win:screen()
-  local max = screen:fullFrame()
+  local max = screen:frame()
 
-  f.x = max.x + (max.w / 2) + windowPadding
-  f.y = max.y + (max.h / 2) + windowPadding
-  f.w = (max.w / 2) - (2 * windowPadding)
-  f.h = (max.h / 2) - (2 * windowPadding)
+  f.w = (max.w - 3 * windowPadding) / 2
+  f.h = (max.h - 3 * windowPadding) / 2
+  f.x = max.x + f.w + 2 * windowPadding
+  f.y = max.y + f.h + 2 * windowPadding
 
   win:setFrame(f)
 end
@@ -153,12 +153,12 @@ end
 function hs.window.upRight(win)
   local f = win:frame()
   local screen = win:screen()
-  local max = screen:fullFrame()
+  local max = screen:frame()
 
-  f.x = max.x + (max.w / 2) + windowPadding
+  f.w = (max.w - 3 * windowPadding) / 2
+  f.h = (max.h - 3 * windowPadding) / 2
+  f.x = max.x + f.w + 2 * windowPadding
   f.y = max.y + windowPadding
-  f.w = (max.w / 2) - (2 * windowPadding)
-  f.h = (max.h / 2) - (2 * windowPadding)
   win:setFrame(f)
 end
 
@@ -170,31 +170,12 @@ end
 function hs.window.centerCurrentSize(win)
   local f = win:frame()
   local screen = win:screen()
-  local max = screen:fullFrame()
+  local max = screen:frame()
 
-  f.x = (max.w / 2) - (f.w / 2)
-  -- f.w = (max.w * 3 / 5) - (2 * windowPadding)
-  f.y = (max.h / 2) - (f.h / 2)
-  -- f.h = max.h - (2 * windowPadding)
+  f.x = max.w / 2 - f.w / 2
+  f.y = max.h / 2 - f.h / 2
   win:setFrame(f)
 end
-
--- +--------------+
--- |  |        |  |
--- |  |  HERE  |  |
--- |  |        |  |
--- +---------------+
--- function hs.window.centerWithFullHeight(win)
---   local f = win:frame()
---   local screen = win:screen()
---   local max = screen:fullFrame()
---
---   f.x = max.x + (max.w / 5) + windowPadding
---   f.w = (max.w * 3 / 5) - (2 * windowPadding)
---   f.y = max.y + windowPadding
---   f.h = max.h - (2 * windowPadding)
---   win:setFrame(f)
--- end
 
 -- +-----------------+
 -- |      |          |
@@ -206,10 +187,10 @@ function hs.window.left40(win)
   local screen = win:screen()
   local max = screen:frame()
 
+  f.w = (max.w - 3 * windowPadding) * 0.4
+  f.h = max.h - 2 * windowPadding
   f.x = max.x + windowPadding
   f.y = max.y + windowPadding
-  f.w = (max.w * 0.4) - (2 * windowPadding)
-  f.h = max.h - (2 * windowPadding)
   win:setFrame(f)
 end
 
@@ -223,10 +204,10 @@ function hs.window.right60(win)
   local screen = win:screen()
   local max = screen:frame()
 
-  f.x = max.x + (max.w * 0.4) + windowPadding
+  f.w = (max.w - 3 * windowPadding) * 0.6
+  f.h = max.h - 2 * windowPadding
+  f.x = max.x + ((max.w - 3 * windowPadding) * 0.4) + (2 * windowPadding)
   f.y = max.y + windowPadding
-  f.w = (max.w * 0.6) - (2 * windowPadding)
-  f.h = max.h - (2 * windowPadding)
   win:setFrame(f)
 end
 
