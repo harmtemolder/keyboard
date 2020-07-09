@@ -25,9 +25,9 @@
 --------------------------------------------------------------------------------
 
 return {
-  modifiers = {'ctrl'},
+  modifiers = {},
   showHelp  = true,
-  trigger   = 's',
+  trigger   = 'f20',
   mappings  = {
     { {},         'return', 'maximizeWithPadding' },
     { {},         'space',  'centerCurrentSize' },

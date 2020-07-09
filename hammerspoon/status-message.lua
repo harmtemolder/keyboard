@@ -9,7 +9,8 @@ statusmessage.new = function(messageText)
     local frame = screen.primaryScreen():frame()
 
     local styledTextAttributes = {
-      font = { name = 'Monaco', size = 24 },
+      font = { name = 'DejaVu LGC Sans Mono', size = 16 },
+      color = { red = 255, green = 255, blue = 255 },
     }
 
     local styledText = styledtext.new('🔨 ' .. messageText, styledTextAttributes)

@@ -64,13 +64,23 @@ end
 --        from the clipboard ("l" for "link")
 --------------------------------------------------------------------------------
 
-markdownMode = hs.hotkey.modal.new({}, 'F20')
+markdownMode = hs.hotkey.modal.new({}, 'f19')
+
+local msgStr = 'Markdown Mode (Vim Mode > `m`)'
+msgStr = msgStr .. (string.format('\n%11s => %s', 'b', 'bold'))
+msgStr = msgStr .. (string.format('\n%11s => %s', 'c', 'code'))
+msgStr = msgStr .. (string.format('\n%11s => %s', 'i', 'italic'))
+msgStr = msgStr .. (string.format('\n%11s => %s', 's', 'strikethrough'))
+msgStr = msgStr .. (string.format('\n%11s => %s', 'l', 'link from clipboard'))
+msgStr = msgStr .. '\n`m` again to cancel'
 
 local message = require('keyboard.status-message')
-markdownMode.statusMessage = message.new('Markdown Mode (hyper+m)')
+markdownMode.statusMessage = message.new(msgStr)
+
 markdownMode.entered = function()
   markdownMode.statusMessage:show()
 end
+
 markdownMode.exited = function()
   markdownMode.statusMessage:hide()
 end
@@ -103,10 +113,10 @@ markdownMode:bindWithAutomaticExit('c', function()
   wrapSelectedText('`')
 end)
 
--- Use hyper+m to toggle Markdown Mode
-hs.hotkey.bind({'shift', 'ctrl', 'alt', 'cmd'}, 'm', function()
+-- Use Vim Mode > `m` to enter Markdown Mode, `m` again to exit
+hs.hotkey.bind({}, 'f19', function()
   markdownMode:enter()
 end)
-markdownMode:bind({'shift', 'ctrl', 'alt', 'cmd'}, 'm', function()
+markdownMode:bind({}, 'm', function()
   markdownMode:exit()
 end)

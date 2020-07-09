@@ -224,11 +224,12 @@ function hs.window.nextScreen(win)
   end
 end
 
-windowLayoutMode = hs.hotkey.modal.new({}, 'F16')
+windowLayoutMode = hs.hotkey.modal.new({}, 'f20')
 
 windowLayoutMode.entered = function()
   windowLayoutMode.statusMessage:show()
 end
+
 windowLayoutMode.exited = function()
   windowLayoutMode.statusMessage:hide()
 end
@@ -263,8 +264,7 @@ function getModifiersStr(modifiers)
   return retVal
 end
 
-local msgStr = getModifiersStr(modifiers)
-msgStr = 'Window Layout Mode (' .. msgStr .. (string.len(msgStr) > 0 and '+' or '') .. trigger .. ')'
+local msgStr = 'Window Layout Mode (Vim Mode > `s`)'
 
 for i, mapping in ipairs(mappings) do
   local modifiers, trigger, winFunction = table.unpack(mapping)
@@ -285,13 +285,16 @@ for i, mapping in ipairs(mappings) do
   end)
 end
 
+msgStr = msgStr .. '\n`s` again to cancel'
+
 local message = require('keyboard.status-message')
 windowLayoutMode.statusMessage = message.new(msgStr)
 
--- Use modifiers+trigger to toggle WindowLayout Mode
+-- Use Vim Mode > `s` to enter Window Mode, `s` again to exit
 hs.hotkey.bind(modifiers, trigger, function()
   windowLayoutMode:enter()
 end)
-windowLayoutMode:bind(modifiers, trigger, function()
+
+windowLayoutMode:bind({}, 's', function()
   windowLayoutMode:exit()
 end)
