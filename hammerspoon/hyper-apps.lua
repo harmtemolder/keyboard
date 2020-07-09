@@ -1,7 +1,7 @@
 -- Default keybindings for launching apps in Hyper Mode
 
 function toggleDockAndMenu()
-  hs.osascript.applescriptFromFile('keyboard/toggle-menu.applescript')
+
   hs.applescript('tell application "System Events" to set autohide of dock preferences to not autohide of dock preferences')
 end
 
@@ -76,18 +76,17 @@ end
 -- your preferred shortcuts.
 return {
   -- Numbers 1, 2, 3 and 4 are mapped to the corresponding spaces
-  { 'a', 'Atom' },              -- "A" for "Atom"
-  { 'c', 'Google Chrome' },     -- "C" for "Chrome"
-  { 'd', toggleDockAndMenu },   -- "D" for "Dock"
-  { 'f', 'Firefox' },           -- "F" for "Firefox"
-  { 'g', 'GitHub Desktop' },    -- "G" for "GitHub"
-  -- I have set Markdown mode to hyper+m
-  { 'p', 'Color Picker' },      -- "P" for "Picker"
+  { 'a', 'Atom', 'Atom'},              -- "A" for "Atom"
+  { 'c', 'Google Chrome', 'Google Chrome'},     -- "C" for "Chrome"
+  { 'd', toggleDockAndMenu, 'Toggle Dock and Menu'},   -- "D" for "Dock"
+  { 'f', 'Firefox', 'Firefox'},           -- "F" for "Firefox"
+  { 'g', 'GitHub Desktop', 'GitHub Desktop'},    -- "G" for "GitHub"
+  { 'p', 'Color Picker', 'Color Picker'},      -- "P" for "Picker"
   -- I have set Mac's keyboard shortcut for screenshots to hyper+s
-  { 't', 'iTerm' },             -- "T" for "Terminal"
-  { 'F10', volMuteToggle },     -- Also enable these fn keys with hyper key
-  { 'F11', volDown },           -- Also enable these fn keys with hyper key
-  { 'F12', volUp },             -- Also enable these fn keys with hyper key
-  { '[', moveSpaceWest },       -- Moves the active window one space west with ,
-  { ']', moveSpaceEast },       -- Moves the active window one space east with .
+  { 't', 'iTerm', 'iTerm'},             -- "T" for "Terminal"
+  { 'F10', volMuteToggle, 'Volume Mute'},     -- Also enable these fn keys with hyper key
+  { 'F11', volDown, 'Volume Down'},           -- Also enable these fn keys with hyper key
+  { 'F12', volUp, 'Volume Up'},             -- Also enable these fn keys with hyper key
+  { '[', moveSpaceWest, 'Move Window East'},       -- Moves the active window one space west with ,
+  { ']', moveSpaceEast, 'Move Window West'},       -- Moves the active window one space east with .
 }
