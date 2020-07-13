@@ -1,7 +1,7 @@
 -- Default keybindings for launching apps in Hyper Mode
 
 function toggleDockAndMenu()
-
+  hs.osascript.applescriptFromFile('keyboard/toggle-menu.applescript')
   hs.applescript('tell application "System Events" to set autohide of dock preferences to not autohide of dock preferences')
 end
 
