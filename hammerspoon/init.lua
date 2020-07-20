@@ -39,4 +39,9 @@ require('keyboard.microphone')
 -- require('keyboard.panes')
 require('keyboard.windows')
 
-hs.notify.new({title='Hammerspoon', informativeText='Ready to rock 🤘'}):send()
+-- hs.notify.new({title='Hammerspoon', informativeText='Ready to rock 🤘'}):send()
+hello = function()
+  local message = require('keyboard.status-message')
+  message.new('Hammerspoon\nReady to rock 🤘'):notify()
+end
+hello()
