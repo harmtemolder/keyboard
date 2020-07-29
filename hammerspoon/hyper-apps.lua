@@ -112,21 +112,19 @@ function moveSpaceEast()
   moveSpace('east')
 end
 
--- To launch _your_ most commonly-used apps via Hyper Mode, create a copy of
--- this file, save it as `hyper-apps.lua`, and edit the table below to configure
--- your preferred shortcuts.
+function screenshot()
+  hs.eventtap.keyStroke({'shift', 'cmd'}, 's')
+end
+
 return {
-  { 'a', 'Atom', 'Atom'},              -- "A" for "Atom"
-  { 'c', 'Chromium', 'Chromium'},     -- "C" for "Chromium"
-  { 'd', toggleDockAndMenu, 'Toggle Dock and Menu'},   -- "D" for "Dock"
-  { 'f', 'Firefox', 'Firefox'},           -- "F" for "Firefox"
-  { 'g', 'GitHub Desktop', 'GitHub Desktop'},    -- "G" for "GitHub"
-  { 'p', 'Color Picker', 'Color Picker'},      -- "P" for "Picker"
-  -- I have set Mac's keyboard shortcut for screenshots to hyper+s
-  { 't', 'iTerm', 'iTerm'},             -- "T" for "Terminal"
-  { 'F10', volMuteToggle, 'Volume Mute'},     -- Also enable these fn keys with hyper key
-  { 'F11', volDown, 'Volume Down'},           -- Also enable these fn keys with hyper key
-  { 'F12', volUp, 'Volume Up'},             -- Also enable these fn keys with hyper key
+  { 'a', 'Atom', 'Atom'},
+  { 'c', 'Chromium', 'Chromium'},
+  { 'd', toggleDockAndMenu, 'Toggle Dock and Menu'},
+  { 'f', 'Firefox', 'Firefox'},
+  { 'g', 'GitHub Desktop', 'GitHub Desktop'},
+  { 'p', 'ProtonMail', 'ProtonMail'},
+  { 's', screenshot, 'Screenshot'},
+  { 't', 'iTerm', 'iTerm'},
   { '1', goSpaceOne, 'Go to space 1' },
   { '2', goSpaceTwo, 'Go to space 2' },
   { '3', goSpaceThree, 'Go to space 3' },
