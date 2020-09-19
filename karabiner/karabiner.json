@@ -263,7 +263,7 @@
                         ]
                     },
                     {
-                        "description": "meta+f -> command",
+                        "description": "meta+f -> fn",
                         "manipulators": [
                             {
                                 "conditions": [
